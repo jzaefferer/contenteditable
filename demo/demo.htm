@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>jQuery editable demo</title>
+
+    <link href="editable.css" rel="stylesheet" type="text/css">	
+    <link href="jquery.rte.css" rel="stylesheet" type="text/css">	
+    <link href="demo.css" rel="stylesheet" type="text/css">	
+
+    <script src="../lib/jquery-1.4.2.js" type="text/javascript"></script>	
+    <script src="../lib/jquery.ui.core.js" type="text/javascript"></script>	
+    <script src="../lib/jquery.ui.widget.js" type="text/javascript"></script>	
+    <script src="../lib/jquery.ui.mouse.js" type="text/javascript"></script>	
+    <script src="../lib/jquery.ui.draggable.js" type="text/javascript"></script>	
+    <script src="../lib/jquery.ui.droppable.js" type="text/javascript"></script>	
+    <script src="../lib/jquery.ui.sortable.js" type="text/javascript"></script>	
+    <script src="../jquery.editable.js" type="text/javascript"></script>	
+
+	<script>
+		jQuery(function($) {
+			function handle() {
+				var handle = $('<div class="handle"/>');
+				$('<span class="remove"></span>').click(function() {
+					$(this).parent().parent().slideUp(function() {
+						$(this).remove();
+					});
+					return false;
+				}).appendTo(handle);
+				return handle;
+			}
+			
+			$.zeit.editable.prototype.options.create = function() {
+				$(this).parent().prepend(handle());
+			};
+
+			$(".centered").sortable({
+				handle: ".handle",
+				start: function(event, ui) {
+					ui.placeholder.height(ui.item.height());
+				},
+				stop: function(event, ui) {
+					if (ui.item.has(".editing")) {
+						ui.item.find(".editing").blur();
+					}
+				},
+				update: function(event, ui) {
+					if (ui.item.is(".extras")) {
+						ui.item.removeClass("extras");
+						if (ui.item.is(":contains(video)")) {
+							ui.item.prepend(handle());
+							$("#vid1").clone().appendTo(ui.item.find("div:last").empty()).show();
+						}
+						if (ui.item.is(":contains(image)")) {
+							ui.item.prepend(handle());
+							$("#img").clone().appendTo(ui.item.find("div:last").empty()).show();
+						}
+						if (ui.item.is(":has(.editable)")) {
+							ui.item.find(".editable").html("<p>text</p>").editable();
+						}
+					}
+				}
+			})
+			$(".sidebar li > div").draggable({
+				connectToSortable: ".centered",
+				helper: "clone"
+			});
+
+            $('.centered .editable').editable();
+        });
+	</script>
+</head>
+<body>
+	<div class="centered">
+		<video style="display:none" id="vid1" width="450" 
+		 poster="http://cdn.kaltura.org/apis/html5lib/kplayer-examples/media/bbb480.jpg"
+		 durationHint="33"
+		 controls>
+		 	<source src="http://cdn.kaltura.org/apis/html5lib/kplayer-examples/media/bbb_trailer_iphone.m4v">
+			<source src="http://cdn.kaltura.org/apis/html5lib/kplayer-examples/media/bbb400p.ogv" />
+		</video>
+		<img style="display:none" src="../img/placeholder.jpg"
+                    width="450" id="img" />
+		<div>
+        	<div class="editable">  
+				<h1>Sicherheitsverwahrung!!1</h1>
+			</div>
+		</div>
+		<div>
+              <div class="editable"> 
+                  <p>This is a demo of editable jQuery plugin. 
+					You can't add newlines to this paragraph.</p>
+                  <p>This is a demo of editable jQuery plugin. 
+					You can't add newlines to this paragraph.</p>
+                  <p>This is a demo of editable jQuery plugin. 
+					You can't add newlines to this paragraph.</p>
+              </div>
+		</div>
+		<div>
+			<div class="editable">
+				<p>
+					Most turtles that spend most of their life on land have their eyes looking down at objects in front of them. Some aquatic turtles, such as snapping turtles and soft-shelled turtles, have eyes closer to the top of the head. These species of turtles can hide from predators in shallow water where they lie entirely submerged except for their eyes and nostrils. Sea turtles possess glands near their eyes that produce salty tears that rid their body of excess salt taken in from the water they drink.
+				</p>
+			</div>
+		</div>	
+		<div>
+			<div class="editable">
+				<p>
+					Most turtles that spend most of their life on land have.
+				</p>
+				<p>
+					 eyes looking down at objects in front of them.
+				</p>
+			</div>
+		</div>	
+		<div>
+				
+			<div class="editable">
+				<p>
+					Turtles are thought to have exceptional night vision due to the unusually large number of rod cells in their retinas. Turtles have color vision with a wealth of cone subtypes with sensitivities ranging from the near Ultraviolet (UV A) to Red. Some land turtles have very poor pursuit movement abilities, which are normally reserved for predators that hunt quick moving prey, but carnivorous turtles are able to move their heads quickly to snap.
+				</p>
+			</div>
+		</div>	
+		<div>
+			<div class="editable">
+		
+				<p>
+					Turtles have a rigid beak. Turtles use their jaws to cut and chew food. Instead of teeth, the upper and lower jaws of the turtle are covered by horny ridges. Carnivorous turtles usually have knife-sharp ridges for slicing through their prey. Herbivorous turtles have serrated-edged ridges that help them cut through tough plants. Turtles use their tongues to swallow food, but they cannot, unlike most reptiles, stick out their tongues to catch food.
+				</p>
+			</div>
+		</div>	
+	</div>
+	<div class="sidebar">
+		<ul>
+			<li>
+				<div class="extras">
+					<div class="static"><img src="../img/module-default-image.png"/> image</div>
+				</div>
+			</li>
+			<li>
+				<div class="extras">
+					<div class="static"><img src="../img/module-video.png"/>video</div>
+				</div>
+			</li>
+			<li>
+				<div class="extras">
+					<div class="editable">text</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</head>

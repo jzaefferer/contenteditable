@@ -1,0 +1,23 @@
+.editableText:hover {
+}
+.editableToolbar:hover + * {
+	outline: 1px dashed grey;
+}
+.editableToolbar {
+}
+.editableToolbar a{
+    display: block;
+    width: 17px;
+    height: 15px;
+    float: left;
+    margin: 2px;
+}
+.editableToolbar .edit {	
+	background: url("icons.png");
+}
+.editableToolbar .save {
+    background: url("icons.png") -16px 0;
+}
+.editableToolbar .cancel {
+    background: url("icons.png") 25px 0;
+}

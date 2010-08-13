@@ -1,0 +1,129 @@
+body {
+	background: #343434;
+    font-family: sans-serif;
+}
+
+div {
+  margin:0;
+  padding:0;
+}
+
+h1,h2,h3,p {
+    margin:0;
+    padding-left:15px;
+    padding-right:15px;
+    padding-bottom:10px;
+    padding-top:10px;
+}  
+
+p {
+  font-size: 13px;
+  margin-top: 33px;
+}
+
+div p:first-child {
+    margin-top:0;
+}
+
+
+
+h1 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+.centered {
+	margin: 0 auto;
+	width: 450px;
+	padding: 50px;
+	background: #fff;
+	border: 1px solid gray;
+}
+.sidebar {
+	border: 1px solid gray;
+	background: #fff;
+	width: 200px;
+	position: absolute;
+	right: 1em;
+	top: 1em;
+}
+.sidebar .handle {
+	display: none;
+}
+
+
+.sidebar .static, .sidebar .editable {
+  width:40px;
+  padding:20px;  
+}
+
+.sidebar li {
+    list-style-type: none;
+}
+
+.handle {
+	width: 450px;
+	height: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #F2F2F2;
+	border-left: 1px solid #BBBBBB;
+    border-top: 1px solid #BBBBBB;
+    border-right: 1px solid #BBBBBB;
+	position: relative;
+}
+.handle .rte-toolbar {
+	position: absolute;
+    top:0;
+}
+
+.remove {
+    display:block;
+    position:absolute;
+    right:5px;
+    width:10px;
+    height:10px;
+    background-image:url('../img/delete.png');
+    background-repeat:no-repeat;
+    cursor:pointer;
+  }
+
+.editable,.static {
+  border: 1px solid #BBBBBB;
+  width: 450px;
+  background-color:white;
+  margin-bottom: 10px;
+}
+
+img {
+    display:block;
+}
+
+video {
+  display:block
+}
+
+.static {
+    
+}
+
+.editing {
+  -moz-box-shadow: 0 0 5px #aaa;
+  box-shadow: 0 0 5px #aaa;
+  outline:none;
+}
+
+.ui-sortable-placeholder {
+    border: 1px dotted black;
+    visibility: visible !important;
+}
+.ui-sortable-placeholder * {
+	visibility: hidden;
+}
+
+
+
+
